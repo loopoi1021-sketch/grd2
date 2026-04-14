@@ -20,9 +20,7 @@ if _google_creds_json:
         json.loads(_google_creds_json), scopes=SCOPES
     )
 else:
-    creds = Credentials.from_service_account_file(
-        "grd2-492000-f4fcb8a2695c.json", scopes=SCOPES
-    )
+    creds = Credentials.from_service_account_file("grd2-493312-9e7a5a4f6aa5.json", scopes=SCOPES)
 
 gc = gspread.authorize(creds)
 

@@ -10,8 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():  # put application's code here
     return '''
-        기간: <input type="number" id="days" value="1" min="1" />일 </br></br>
-        <button onclick="fetchOrders()">주문 리스트 가져오기</button>
+        기간: <input type="number" id="days" value="2" min="1" />일 </br></br>
+        <button onclick="fetchOrders()">발주 리스트 엑셀에 옮기기</button>
         &nbsp;
         <button onclick="fetchDailyOrders(this)">당일 주문 리스트</button>
         &nbsp;

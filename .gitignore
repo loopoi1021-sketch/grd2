@@ -18,3 +18,4 @@ env/
 
 # Claude
 .claude/
+grd2-rsa-key.pem

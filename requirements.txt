@@ -1,0 +1,9 @@
+flask==3.1.1
+gunicorn==23.0.0
+requests==2.32.4
+bcrypt==4.3.0
+pybase64==1.4.1
+gspread==6.2.1
+google-auth==2.40.3
+google-auth-oauthlib==1.2.2
+playwright==1.58.0

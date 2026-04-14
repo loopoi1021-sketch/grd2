@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: grd2
+    runtime: python
+    buildCommand: pip install -r requirements.txt && playwright install chromium && playwright install-deps chromium
+    startCommand: gunicorn app:app
+    plan: free
+    envVars:
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false

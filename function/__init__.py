@@ -1,3 +1,6 @@
+import json
+import os
+
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -10,11 +13,16 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ]
-SERVICE_ACCOUNT_FILE = "grd2-492000-f4fcb8a2695c.json"  # 서비스 계정 JSON 키 파일 경로
 
-creds = Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES
-)
+_google_creds_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+if _google_creds_json:
+    creds = Credentials.from_service_account_info(
+        json.loads(_google_creds_json), scopes=SCOPES
+    )
+else:
+    creds = Credentials.from_service_account_file(
+        "grd2-492000-f4fcb8a2695c.json", scopes=SCOPES
+    )
 
 gc = gspread.authorize(creds)
 

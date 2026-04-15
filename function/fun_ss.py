@@ -163,6 +163,14 @@ def write_orders_to_sheet(order_data):
                 suffix = ' 271-BFC' if '(오버핏기모)' in product.get('productOption', '') else ' 219-MLC'
                 productName += suffix
 
+            seonghyang = ""
+            if productId == '13227888471':
+                option_str = product.get("productOption", "")
+                for part in option_str.split("/"):
+                    part = part.strip()
+                    if part.startswith("성향:"):
+                        seonghyang = part[3:].strip()
+
             if idx == 0:
                 worksheet.append_row([
                     order.get("orderId"),
@@ -175,6 +183,7 @@ def write_orders_to_sheet(order_data):
                     order.get("tel1"),
                     order.get("zipCode"),
                     order.get("baseAddress"),
+                    seonghyang,
                 ])
             else:
                 worksheet.append_row([
@@ -183,6 +192,7 @@ def write_orders_to_sheet(order_data):
                     product.get("productOption"),
                     product.get("quantity"),
                     " ", " ", " ",
+                    seonghyang,
                 ])
             start_row += 1
 
@@ -258,11 +268,13 @@ def get_daily_orders_from_sheet():
             quantity = row[5]
 
             color, size = "", ""
-            if "색상:" in option and "사이즈:" in option:
+            if ("색상:" in option or "성향:" in option) and "사이즈:" in option:
                 parts = option.split("/")
                 for part in parts:
                     part = part.strip()
                     if part.startswith("색상:"):
+                        color = part[3:].strip()
+                    elif part.startswith("성향:"):
                         color = part[3:].strip()
                     elif part.startswith("사이즈:"):
                         size = part[4:].strip()

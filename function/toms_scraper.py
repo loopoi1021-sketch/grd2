@@ -27,8 +27,8 @@ def extract_product_code(product_name):
 
 
 def extract_color_code(color_str):
-    """색상 문자열 앞 3자리 코드 추출 (예: '003 모쿠그레이' → '003')"""
-    match = re.match(r'^(\d{3})', color_str.strip())
+    """색상 문자열에서 3자리 코드 추출 (예: '003 모쿠그레이' → '003', '(시보리)031 네이비' → '031')"""
+    match = re.search(r'(\d{3})', color_str.strip())
     return match.group(1) if match else None
 
 

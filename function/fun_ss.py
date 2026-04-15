@@ -191,7 +191,7 @@ def write_orders_to_sheet(order_data):
                     productName,
                     product.get("productOption"),
                     product.get("quantity"),
-                    " ", " ", " ",
+                    " ", " ", " ", " ",
                     seonghyang,
                 ])
             start_row += 1
@@ -275,7 +275,7 @@ def get_daily_orders_from_sheet():
                     if part.startswith("색상:"):
                         color = part[3:].strip()
                     elif part.startswith("성향:"):
-                        color = part[3:].strip()
+                        color = "005 블랙"
                     elif part.startswith("사이즈:"):
                         size = part[4:].strip()
             else:

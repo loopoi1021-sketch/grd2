@@ -164,12 +164,18 @@ def write_orders_to_sheet(order_data):
                 productName += suffix
 
             seonghyang = ""
+            productOption = product.get("productOption", "")
             if productId == '13227888471':
-                option_str = product.get("productOption", "")
-                for part in option_str.split("/"):
+                parts = productOption.split("/")
+                converted_parts = []
+                for part in parts:
                     part = part.strip()
                     if part.startswith("성향:"):
                         seonghyang = part[3:].strip()
+                        converted_parts.append("색상: 005 블랙")
+                    else:
+                        converted_parts.append(part)
+                productOption = " / ".join(converted_parts)
 
             if idx == 0:
                 worksheet.append_row([
@@ -177,7 +183,7 @@ def write_orders_to_sheet(order_data):
                     order.get("ordererName"),
                     order.get("ordererTel"),
                     productName,
-                    product.get("productOption"),
+                    productOption,
                     product.get("quantity"),
                     order.get("name"),
                     order.get("tel1"),
@@ -189,7 +195,7 @@ def write_orders_to_sheet(order_data):
                 worksheet.append_row([
                     " ", " ", " ",
                     productName,
-                    product.get("productOption"),
+                    productOption,
                     product.get("quantity"),
                     " ", " ", " ", " ",
                     seonghyang,

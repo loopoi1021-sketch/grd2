@@ -108,11 +108,12 @@ async def fetch_add_to_cart():
                 })
             ''')
             size_to_col = {s['sizeText']: s['colIndex'] for s in sizes_info}
-            # XXL ↔ 2XL 양방향 추가
-            if 'XXL' in size_to_col:
-                size_to_col['2XL'] = size_to_col['XXL']
-            if '2XL' in size_to_col:
-                size_to_col['XXL'] = size_to_col['2XL']
+            # 사이즈 별칭 양방향 추가 (XXL↔2XL, XXXL↔3XL)
+            for a, b in [('XXL', '2XL'), ('XXXL', '3XL')]:
+                if a in size_to_col and b not in size_to_col:
+                    size_to_col[b] = size_to_col[a]
+                if b in size_to_col and a not in size_to_col:
+                    size_to_col[a] = size_to_col[b]
 
             filled_items = []
             skipped_items = []

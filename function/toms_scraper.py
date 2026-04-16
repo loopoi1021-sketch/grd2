@@ -13,12 +13,14 @@ FIXED_COLOR_CODES = {
 }
 
 SIZE_NORMALIZE = {
-    '2XL': 'XXL', 'XXL': 'XXL',
+    '2XL': 'XXL',
+    'XXL': 'XXL',
     'XL': 'XL',
     'L': 'L',
     'M': 'M',
     'S': 'S',
-    '3XL': '3XL', 'XXXL': '3XL',
+    '3XL': 'XXXL',
+    'XXXL': 'XXXL',
     '4XL': '4XL',
     'FREE': 'FREE', 'F': 'FREE',
 }

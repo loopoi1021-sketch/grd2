@@ -8,10 +8,6 @@ from static.static import TOMS_KOREA_ID, TOMS_KOREA_PW
 
 
 # 사이즈 표기 정규화 (주문 데이터 → 사이트 표기)
-FIXED_COLOR_CODES = {
-    "300-ACT": "005",  # 성향 옵션 상품, 색상 005 블랙 고정
-}
-
 SIZE_NORMALIZE = {
     '2XL': 'XXL',
     'XXL': 'XXL',
@@ -63,7 +59,7 @@ async def fetch_add_to_cart():
             code = extract_product_code(item['productName'])
             if not code:
                 continue
-            color_cd = FIXED_COLOR_CODES.get(code) or extract_color_code(item['color'])
+            color_cd = extract_color_code(item['color'])
             if not color_cd:
                 continue
             size = SIZE_NORMALIZE.get(item['size'], item['size'])
